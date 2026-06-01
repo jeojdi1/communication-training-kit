@@ -1,0 +1,123 @@
+/* ============================================================
+   COMMUNICATION TRAINING KIT — shared design system
+   Vibe: warm & friendly, soft, approachable
+   Palette: deep navy ink · warm coral accent · cream paper
+   Type:  Bricolage Grotesque (display) · Hanken Grotesk (text)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
+
+:root {
+  /* surfaces */
+  --paper:      oklch(0.972 0.013 74);   /* warm cream page */
+  --paper-2:    oklch(0.955 0.018 72);   /* deeper cream */
+  --surface:    oklch(0.993 0.006 80);   /* warm near-white card */
+  --navy:       oklch(0.255 0.052 264);  /* deep navy section bg */
+  --navy-2:     oklch(0.205 0.05 264);   /* darker navy */
+
+  /* ink */
+  --ink:        oklch(0.285 0.05 264);   /* primary text — soft navy */
+  --ink-soft:   oklch(0.46 0.04 264);    /* secondary text */
+  --ink-faint:  oklch(0.63 0.03 264);    /* tertiary / captions */
+  --on-navy:    oklch(0.96 0.013 74);    /* text on navy */
+  --on-navy-soft: oklch(0.78 0.02 264);
+
+  /* accents — shared chroma/lightness, varied hue */
+  --coral:      oklch(0.645 0.155 27);   /* primary warm coral */
+  --coral-deep: oklch(0.56 0.16 27);
+  --coral-soft: oklch(0.92 0.05 40);     /* coral tint wash */
+  --blue:       oklch(0.55 0.11 252);    /* secondary cool accent */
+  --blue-soft:  oklch(0.93 0.035 250);
+  --gold:       oklch(0.78 0.11 78);     /* highlight */
+
+  /* lines & shadows */
+  --line:       oklch(0.86 0.018 70);
+  --line-strong:oklch(0.78 0.025 70);
+  --shadow-sm:  0 1px 2px oklch(0.3 0.04 264 / 0.06), 0 2px 8px oklch(0.3 0.04 264 / 0.05);
+  --shadow-md:  0 4px 14px oklch(0.3 0.04 264 / 0.08), 0 12px 34px oklch(0.3 0.04 264 / 0.07);
+  --shadow-lg:  0 10px 40px oklch(0.3 0.04 264 / 0.14);
+
+  /* type */
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-text: 'Hanken Grotesk', system-ui, sans-serif;
+
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 34px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-text);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* ---- shared atoms ---- */
+.kit-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-text);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--coral-deep);
+  background: var(--coral-soft);
+  padding: 0.5em 0.9em;
+  border-radius: 999px;
+}
+
+.kit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  font-family: var(--font-text);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.85em 1.5em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.kit-btn--primary { background: var(--coral); color: white; box-shadow: var(--shadow-sm); }
+.kit-btn--primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.kit-btn--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line-strong); }
+.kit-btn--ghost:hover { background: var(--surface); transform: translateY(-2px); }
+
+/* image / media placeholder */
+.kit-ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--paper-2);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent, transparent 9px,
+    oklch(0.86 0.02 70 / 0.55) 9px, oklch(0.86 0.02 70 / 0.55) 10px
+  );
+  border-radius: var(--r-md);
+  color: var(--ink-faint);
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding: 1rem;
+}

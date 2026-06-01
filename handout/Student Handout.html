@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Communication — Student Handout</title>
+<link rel="stylesheet" href="../kit.css" />
+<style>
+  body { background: var(--paper-2); padding: 28px 16px 60px; }
+
+  /* on-screen toolbar */
+  .bar { max-width: 8.5in; margin: 0 auto 18px; display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; }
+  .bar .t { font-size: 0.92rem; color: var(--ink-soft); }
+  .bar .t b { color: var(--ink); }
+
+  /* the sheet */
+  .sheet {
+    width: 8.5in; min-height: 11in; margin: 0 auto; background: var(--surface);
+    box-shadow: var(--shadow-lg); border-radius: 6px; padding: 0.7in 0.72in 0.6in;
+    position: relative;
+  }
+  .sheet header { display:flex; justify-content:space-between; align-items:flex-start; border-bottom: 3px solid var(--navy); padding-bottom: 14px; }
+  .sheet header h1 { font-size: 34px; font-weight: 800; color: var(--ink); }
+  .sheet header .sk { font-family: var(--font-text); font-weight:800; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color: var(--coral-deep); }
+  .sheet header .logo { display:flex; align-items:center; gap:8px; font-family: var(--font-display); font-weight:800; color: var(--ink); font-size:15px; }
+  .sheet header .logo .d { width:12px;height:12px;border-radius:50%;background:var(--coral); }
+
+  .namebar { display:flex; gap:22px; margin-top:14px; font-size:13px; color:var(--ink-soft); }
+  .namebar .f { flex:1; display:flex; align-items:flex-end; gap:8px; }
+  .namebar .f .ln { flex:1; border-bottom:1.5px dotted var(--line-strong); height:20px; }
+
+  h2.sec { font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--coral-deep); font-family:var(--font-text); font-weight:800; margin:22px 0 10px; display:flex; align-items:center; gap:10px; }
+  h2.sec::after { content:""; flex:1; height:1.5px; background:var(--line); }
+
+  .pillars { display:grid; grid-template-columns: repeat(3,1fr); gap:12px; }
+  .pill { border:1.5px solid var(--line); border-radius:12px; padding:13px 14px; }
+  .pill.p1 { border-top:5px solid var(--coral); }
+  .pill.p2 { border-top:5px solid var(--blue); }
+  .pill.p3 { border-top:5px solid var(--gold); }
+  .pill h3 { font-size:17px; color:var(--ink); margin-bottom:6px; }
+  .pill ul { margin:0; padding-left:16px; }
+  .pill li { font-size:12.5px; color:var(--ink-soft); line-height:1.45; margin-bottom:4px; }
+  .pill li b { color:var(--ink); }
+
+  .two { display:grid; grid-template-columns: 1.15fr 1fr; gap:18px; align-items:start; }
+
+  /* SBI formula box */
+  .sbi { background: var(--navy); color:var(--on-navy); border-radius:14px; padding:16px 18px; }
+  .sbi .ttl { font-family:var(--font-display); font-weight:800; font-size:18px; color:#fff; margin-bottom:10px; }
+  .sbi .step { display:flex; gap:11px; margin-bottom:9px; align-items:flex-start; }
+  .sbi .step .l { font-family:var(--font-display); font-weight:800; font-size:22px; line-height:1; width:24px; }
+  .sbi .step.s1 .l { color: var(--coral); }
+  .sbi .step.s2 .l { color: oklch(0.7 0.1 252); }
+  .sbi .step.s3 .l { color: var(--gold); }
+  .sbi .step b { color:#fff; font-size:13.5px; }
+  .sbi .step p { margin:1px 0 0; font-size:12px; color:var(--on-navy-soft); line-height:1.4; }
+  .sbi .ex { margin-top:10px; font-size:12px; font-style:italic; color:#fff; background:rgba(255,255,255,.1); border-radius:9px; padding:9px 11px; line-height:1.45; }
+
+  /* listening checklist */
+  .check { border:1.5px solid var(--line); border-radius:14px; padding:14px 16px; }
+  .check .row { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--ink); padding:5px 0; }
+  .check .box { width:16px;height:16px;border:1.8px solid var(--line-strong); border-radius:4px; flex-shrink:0; }
+
+  /* notes lines */
+  .notes { border:1.5px solid var(--line); border-radius:14px; padding:12px 16px 16px; }
+  .notes .ln { border-bottom:1.5px dotted var(--line-strong); height:26px; }
+
+  .tip { background: var(--coral-soft); border-radius:12px; padding:12px 16px; font-size:13px; color:var(--ink); line-height:1.45; }
+  .tip b { color: var(--coral-deep); }
+
+  .sheet footer { margin-top:18px; padding-top:10px; border-top:1px solid var(--line); display:flex; justify-content:space-between; font-size:11px; color:var(--ink-faint); }
+
+  @media print {
+    @page { size: letter; margin: 0; }
+    body { background:#fff; padding:0; }
+    .bar { display:none; }
+    .sheet { box-shadow:none; border-radius:0; width:100%; min-height:auto; padding:0.5in 0.55in; }
+  }
+</style>
+</head>
+<body>
+  <div class="bar">
+    <div class="t"><b>Student Handout</b> · print it or post to Brightspace · follows the 15-min training</div>
+    <button class="kit-btn kit-btn--primary" onclick="window.print()" style="font-size:.9rem;padding:.6em 1.2em">Print / Save as PDF</button>
+  </div>
+
+  <div class="sheet">
+    <header>
+      <div>
+        <div class="sk">Soft Skills Training · Follow-along sheet</div>
+        <h1>Communication</h1>
+      </div>
+      <div class="logo"><span class="d"></span>Comms 101</div>
+    </header>
+
+    <div class="namebar">
+      <div class="f">Name <span class="ln"></span></div>
+      <div class="f">Date <span class="ln" style="max-width:120px"></span></div>
+    </div>
+
+    <h2 class="sec">The three pillars</h2>
+    <div class="pillars">
+      <div class="pill p1">
+        <h3>01 · Active Listening</h3>
+        <ul>
+          <li><b>Full attention</b> — phone down, face them.</li>
+          <li><b>Paraphrase:</b> "So you're saying…"</li>
+          <li><b>Ask</b> open questions; don't assume.</li>
+          <li>Let <b>silence</b> do some work.</li>
+        </ul>
+      </div>
+      <div class="pill p2">
+        <h3>02 · Written &amp; Digital</h3>
+        <ul>
+          <li><b>Lead with the ask</b> in line one.</li>
+          <li><b>Be specific</b> — "Fri 3pm," not "soon."</li>
+          <li><b>Check the tone</b> — read it aloud.</li>
+          <li>Over 3 messages? <b>Just talk.</b></li>
+        </ul>
+      </div>
+      <div class="pill p3">
+        <h3>03 · Feedback</h3>
+        <ul>
+          <li>Give it with the <b>S·B·I</b> formula →</li>
+          <li>Receiving: <b>breathe</b>, get curious.</li>
+          <li>Ask for an <b>example</b>.</li>
+          <li>It's about the <b>work</b>, not you.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="sec">The feedback formula &amp; the listening check</h2>
+    <div class="two">
+      <div class="sbi">
+        <div class="ttl">S · B · I — feedback that lands</div>
+        <div class="step s1"><span class="l">S</span><div><b>Situation</b><p>When &amp; where it happened.</p></div></div>
+        <div class="step s2"><span class="l">B</span><div><b>Behaviour</b><p>What they actually did — facts, not labels.</p></div></div>
+        <div class="step s3"><span class="l">I</span><div><b>Impact</b><p>The effect it had on you / the team.</p></div></div>
+        <div class="ex">"In today's meeting <u>(S)</u>, you took notes for everyone <u>(B)</u>, which kept us all on the same page — thank you! <u>(I)</u>"</div>
+      </div>
+      <div class="check">
+        <div style="font-family:var(--font-display);font-weight:800;font-size:15px;margin-bottom:6px;color:var(--ink)">Am I really listening?</div>
+        <div class="row"><span class="box"></span> My phone is away</div>
+        <div class="row"><span class="box"></span> I'm not planning my reply</div>
+        <div class="row"><span class="box"></span> I paraphrased what I heard</div>
+        <div class="row"><span class="box"></span> I asked at least one question</div>
+        <div class="row"><span class="box"></span> I noticed their tone &amp; body language</div>
+      </div>
+    </div>
+
+    <h2 class="sec">Try it this week</h2>
+    <div class="tip"><b>Your challenge:</b> in your next real conversation, paraphrase the other person once before you respond — then rewrite one rushed text or email using "lead with the ask." Jot what happened below.</div>
+
+    <h2 class="sec">My notes</h2>
+    <div class="notes">
+      <div class="ln"></div><div class="ln"></div><div class="ln"></div>
+    </div>
+
+    <footer>
+      <span>Communication · Management Training group project</span>
+      <span>Keep this sheet handy 💛</span>
+    </footer>
+  </div>
+</body>
+</html>

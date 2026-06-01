@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Communication — Training Deck</title>
+<link rel="stylesheet" href="deck.css" />
+</head>
+<body>
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <rect width="400" height="400" fill="#2a3350"/>
+    <g transform="translate(120,118)">
+      <rect x="0" y="0" width="150" height="110" rx="20" fill="#fdf6ec"/>
+      <rect x="22" y="26" width="80" height="14" rx="7" fill="#e8615d"/>
+      <rect x="22" y="56" width="106" height="9" rx="4.5" fill="#c9cdda"/>
+      <rect x="22" y="74" width="78" height="9" rx="4.5" fill="#c9cdda"/>
+    </g>
+    <circle cx="290" cy="120" r="30" fill="#e8615d"/>
+    <text x="290" y="132" font-family="Arial" font-size="34" font-weight="800" fill="#fff" text-anchor="middle">!</text>
+  </svg>
+</template>
+<deck-stage width="1920" height="1080">
+
+  <!-- 01 · TITLE -->
+  <section data-label="Title">
+    <div class="s s--navy s--center">
+      <span class="chip-d" style="align-self:flex-start">Soft Skills Training</span>
+      <h1 class="title" style="margin-top:40px">Communi&shy;cation</h1>
+      <p class="lead" style="margin-top:34px;font-size:42px;max-width:34ch">The one skill behind every other skill. Let's spend 15 minutes getting better at it — together.</p>
+      <div style="position:absolute;right:120px;bottom:120px;text-align:right;font-size:26px;line-height:1.7;color:rgba(255,255,255,.7)">
+        <div style="color:#fff;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:22px">Presented by</div>
+        <div>James Yang · Alex Au · Peter Yang</div>
+      </div>
+      <div class="bub me" style="position:absolute;right:120px;top:120px;transform:rotate(4deg);font-size:40px">Can you hear me? 🙂</div>
+    </div>
+  </section>
+
+  <!-- 02 · HOOK / POLL -->
+  <section data-label="Hook">
+    <div class="s">
+      <span class="kick">Quick gut-check</span>
+      <h2 class="head" style="max-width:24ch">How much of a message actually gets through?</h2>
+      <p class="lead" style="margin-top:22px">Tap a bar to lock in your guess — then we'll reveal the research.</p>
+      <div style="margin-top:54px;display:flex;flex-direction:column;gap:26px;max-width:1200px" id="poll">
+        <div style="display:flex;align-items:center;gap:28px"><span style="font-size:30px;font-weight:700;width:90px">90%</span><div class="pollbar" style="flex:1" data-fill="90"><i></i></div></div>
+        <div style="display:flex;align-items:center;gap:28px"><span style="font-size:30px;font-weight:700;width:90px">70%</span><div class="pollbar" style="flex:1" data-fill="70"><i></i></div></div>
+        <div style="display:flex;align-items:center;gap:28px"><span style="font-size:30px;font-weight:700;width:90px">50%</span><div class="pollbar" style="flex:1" data-fill="50"><i></i></div></div>
+      </div>
+      <div class="hint" style="margin-top:30px" id="pollHint"><span>👆</span> Click a bar — the reveal is coming.</div>
+      <div class="brandbar"><span class="b-logo"><span class="d"></span>Communication</span><span>Warm-up</span></div>
+    </div>
+  </section>
+
+  <!-- 03 · BIG STAT REVEAL -->
+  <section data-label="Stat">
+    <div class="s s--coral s--center">
+      <span class="kick">The reality</span>
+      <div style="display:flex;align-items:baseline;gap:30px;flex-wrap:wrap">
+        <span style="font-family:var(--font-display);font-weight:800;font-size:300px;line-height:0.8">~50%</span>
+        <span style="font-size:48px;font-weight:600;max-width:18ch">of what we intend to say is what the other person actually receives.</span>
+      </div>
+      <p class="lead" style="margin-top:40px;color:#fff;opacity:.92;max-width:40ch;font-size:38px">Tone, attention, wording and assumptions eat the rest. Good communication is about closing that gap on purpose.</p>
+    </div>
+  </section>
+
+  <!-- 04 · AGENDA -->
+  <section data-label="Agenda">
+    <div class="s">
+      <span class="kick">Today's training</span>
+      <h2 class="head">Three pillars, one goal</h2>
+      <div class="row" style="margin-top:64px">
+        <div class="col tile" style="border-top:8px solid var(--coral)">
+          <div style="font-size:30px;font-weight:800;color:var(--coral-deep)">Pillar 01</div>
+          <h3 class="sub" style="margin:14px 0 16px">Active Listening</h3>
+          <p style="font-size:30px;color:var(--ink-soft);line-height:1.4">Really hearing — not just waiting to talk.</p>
+        </div>
+        <div class="col tile" style="border-top:8px solid var(--blue)">
+          <div style="font-size:30px;font-weight:800;color:var(--blue)">Pillar 02</div>
+          <h3 class="sub" style="margin:14px 0 16px">Written &amp; Digital</h3>
+          <p style="font-size:30px;color:var(--ink-soft);line-height:1.4">Email &amp; chat that's clear the first time.</p>
+        </div>
+        <div class="col tile" style="border-top:8px solid var(--gold)">
+          <div style="font-size:30px;font-weight:800;color:var(--ink)">Pillar 03</div>
+          <h3 class="sub" style="margin:14px 0 16px">Feedback</h3>
+          <p style="font-size:30px;color:var(--ink-soft);line-height:1.4">Giving it kindly, taking it gracefully.</p>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:50px;font-size:30px">Then we'll prove it with a quick <b>game</b> and a hands-on <b>activity</b>.</p>
+      <div class="brandbar"><span class="b-logo"><span class="d"></span>Communication</span><span>Agenda</span></div>
+    </div>
+  </section>
+
+  <!-- 05 · PILLAR 1 DIVIDER -->
+  <section data-label="Pillar 1">
+    <div class="s s--navy s--center">
+      <span class="chip-d" style="align-self:flex-start">Pillar 01</span>
+      <h2 class="head" style="font-size:120px;margin-top:30px">Active Listening</h2>
+      <p class="lead" style="margin-top:28px;font-size:42px">"We have two ears and one mouth so that we can listen twice as much as we speak."</p>
+      <span class="pillnum">01</span>
+    </div>
+  </section>
+
+  <!-- 06 · LISTENING LADDER (interactive reveal) -->
+  <section data-label="Listening levels">
+    <div class="s">
+      <span class="kick">Pillar 01 · Active Listening</span>
+      <h2 class="head">There are levels to listening</h2>
+      <p class="lead" style="margin-top:18px;font-size:30px">Click each card to see what it looks like.</p>
+      <div class="row" style="margin-top:48px" id="levels">
+        <div class="col tile reveal-card" style="min-height:340px">
+          <div class="reveal-front"><div style="font-size:64px">😶</div><h3 class="sub" style="margin:18px 0 0;font-size:40px">Ignoring</h3><p style="font-size:28px;color:var(--ink-soft);margin-top:10px">Not really there.</p></div>
+          <div class="reveal-back"><h3 class="sub" style="font-size:36px;color:var(--coral-deep)">Looks like…</h3><p style="font-size:30px;line-height:1.4;margin-top:14px">Phone out, eyes elsewhere, "mm-hmm" on autopilot.</p></div>
+        </div>
+        <div class="col tile reveal-card" style="min-height:340px">
+          <div class="reveal-front"><div style="font-size:64px">🙂</div><h3 class="sub" style="margin:18px 0 0;font-size:40px">Pretending</h3><p style="font-size:28px;color:var(--ink-soft);margin-top:10px">Nodding along.</p></div>
+          <div class="reveal-back"><h3 class="sub" style="font-size:36px;color:var(--coral-deep)">Looks like…</h3><p style="font-size:30px;line-height:1.4;margin-top:14px">Agreeing fast, but can't repeat what was said.</p></div>
+        </div>
+        <div class="col tile reveal-card" style="min-height:340px">
+          <div class="reveal-front"><div style="font-size:64px">🎯</div><h3 class="sub" style="margin:18px 0 0;font-size:40px">Attentive</h3><p style="font-size:28px;color:var(--ink-soft);margin-top:10px">Focused on words.</p></div>
+          <div class="reveal-back"><h3 class="sub" style="font-size:36px;color:var(--coral-deep)">Looks like…</h3><p style="font-size:30px;line-height:1.4;margin-top:14px">Eye contact, no interrupting, taking it in.</p></div>
+        </div>
+        <div class="col tile reveal-card" style="min-height:340px;border:2px solid var(--coral)">
+          <div class="reveal-front"><div style="font-size:64px">💛</div><h3 class="sub" style="margin:18px 0 0;font-size:40px">Empathic</h3><p style="font-size:28px;color:var(--coral-deep);margin-top:10px;font-weight:700">The goal</p></div>
+          <div class="reveal-back"><h3 class="sub" style="font-size:36px;color:var(--coral-deep)">Looks like…</h3><p style="font-size:30px;line-height:1.4;margin-top:14px">Hearing feelings too — "Sounds like that was stressful."</p></div>
+        </div>
+      </div>
+      <div class="brandbar"><span class="b-logo"><span class="d"></span>Communication</span><span>Active Listening</span></div>
+    </div>
+  </section>
+
+  <!-- 07 · L.I.S.T.E.N toolkit -->
+  <section data-label="Listen toolkit">
+    <div class="s">
+      <span class="kick">Pillar 01 · Active Listening</span>
+      <h2 class="head">5 things great listeners do</h2>
+      <div style="margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:28px 56px;max-width:1500px">
+        <div style="display:flex;gap:24px;align-items:flex-start"><span style="font-size:46px">🔇</span><div><h3 class="sub" style="font-size:38px">Give full attention</h3><p style="font-size:28px;color:var(--ink-soft);margin-top:6px">Phone down, body turned toward the speaker.</p></div></div>
+        <div style="display:flex;gap:24px;align-items:flex-start"><span style="font-size:46px">🔁</span><div><h3 class="sub" style="font-size:38px">Paraphrase back</h3><p style="font-size:28px;color:var(--ink-soft);margin-top:6px">"So what you're saying is…" to confirm.</p></div></div>
+        <div style="display:flex;gap:24px;align-items:flex-start"><span style="font-size:46px">❓</span><div><h3 class="sub" style="font-size:38px">Ask, don't assume</h3><p style="font-size:28px;color:var(--ink-soft);margin-top:6px">Open questions beat filling in blanks.</p></div></div>
+        <div style="display:flex;gap:24px;align-items:flex-start"><span style="font-size:46px">⏸️</span><div><h3 class="sub" style="font-size:38px">Let silence sit</h3><p style="font-size:28px;color:var(--ink-soft);margin-top:6px">A pause invites more than a quick reply.</p></div></div>
+        <div style="display:flex;gap:24px;align-items:flex-start"><span style="font-size:46px">👀</span><div><h3 class="sub" style="font-size:38px">Read the body language</h3><p style="font-size:28px;color:var(--ink-soft);margin-top:6px">Tone &amp; face often say more than words.</p></div></div>
+        <div class="bub navy" style="font-size:30px;align-self:center">Try this today: in your next chat, paraphrase once before you reply.</div>
+      </div>
+      <div class="brandbar"><span class="b-logo"><span class="d"></span>Communication</span><span>Active Listening</span></div>
+    </div>
+  </section>
+
+  <!-- 08 · PILLAR 2 DIVIDER -->
+  <section data-label="Pillar 2">
+    <div class="s s--navy s--center">
+      <span class="chip-d" style="align-self:flex-start">Pillar 02</span>
+      <h2 class="head" style="font-size:120px;margin-top:30px">Written &amp; Digital</h2>
+      <p class="lead" style="margin-top:28px;font-size:42px">Email, chat, DMs, comments — most of how we talk at school &amp; work has no tone of voice attached.</p>
+      <span class="pillnum">02</span>
+    </div>
+  </section>
+
+  <!-- 09 · BEFORE / AFTER EMAIL (interactive toggle) -->
+  <section data-label="Before/After">
+    <div class="s">
+      <span class="kick">Pillar 02 · Written &amp; Digital</span>
+      <h2 class="head">Same message, different result</h2>
+      <div style="display:flex;gap:24px;margin-top:36px">
+        <button class="kit-btn kit-btn--primary tap-pulse" id="baToggle" style="font-size:26px">Show the fix →</button>
+        <span class="hint" style="align-self:center">Watch the email transform.</span>
+      </div>
+      <div style="margin-top:40px;max-width:1300px">
+        <div class="tile" id="emailCard" style="padding:0;overflow:hidden">
+          <div style="padding:24px 38px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:28px;color:var(--ink-soft)"><b style="color:var(--ink)">To:</b> the team &nbsp; <b style="color:var(--ink)">Subject:</b> <span id="emSubj">stuff</span></div>
+            <span id="emBadge" style="font-weight:800;font-size:24px;color:var(--coral-deep);background:var(--coral-soft);padding:8px 18px;border-radius:999px">Before</span>
+          </div>
+          <div style="padding:38px;font-size:34px;line-height:1.5" id="emBody">
+            hey did u finish the thing?? need it asap. also the other stuff isnt right
+          </div>
+        </div>
+        <div class="row" id="baNotes" style="margin-top:30px;display:none;gap:18px">
+          <div class="bub" style="font-size:26px;flex:1">✅ Clear subject &amp; ask</div>
+          <div class="bub" style="font-size:26px;flex:1">✅ Specific, not "the thing"</div>
+          <div class="bub" style="font-size:26px;flex:1">✅ A real deadline</div>
+          <div class="bub" style="font-size:26px;flex:1">✅ Warm, human tone</div>
+        </div>
+      </div>
+      <div class="brandbar"><span class="b-logo"><span class="d"></span>Communication</span><span>Written &amp; Digital</span></div>
+    </div>
+  </section>
+
+  <!-- 10 · DIGITAL RULES -->
+  <section data-label="Digital rules">
+    <div class="s">
+      <span class="kick">Pillar 02 · Written &amp; Digital</span>
+      <h2 class="head">Write so they can't misread you</h2>
+      <div class="row" style="margin-top:56px">
+        <div class="col tile"><div style="font-size:30px;font-weight:800;color:var(--coral-deep)">Lead with the ask</div><p style="font-size:30px;color:var(--ink-soft);margin-top:14px;line-height:1.4">Put the point in the first line. Don't bury it.</p></div>
+        <div class="col tile"><div style="font-size:30px;font-weight:800;color:var(--coral-deep)">Be specific</div><p style="font-size:30px;color:var(--ink-soft);margin-top:14px;line-height:1.4">"By Friday 3pm," not "soon." Names, dates, numbers.</p></div>
+        <div class="col tile"><div style="font-size:30px;font-weight:800;color:var(--coral-deep)">Mind the tone</div><p style="font-size:30px;color:var(--ink-soft);margin-top:14px;line-height:1.4">No tone of voice online — read it out loud first.</p></div>
+      </div>
+      <div class="bub navy" style="margin-top:44px;font-size:32px;align-self:flex-start;max-width:36ch">Rule of thumb: if it would take more than 3 messages to sort out, just call or talk in person.</div>
+      <div class="brandbar"><span class="b-logo"><span class="d"></span>Communication</span><span>Written &amp; Digital</span></div>
+    </div>
+  </section>
+
+  <!-- 11 · PILLAR 3 DIVIDER -->
+  <section data-label="Pillar 3">
+    <div class="s s--navy s--center">
+      <span class="chip-d" style="align-self:flex-start">Pillar 03</span>
+      <h2 class="head" style="font-size:120px;margin-top:30px">Feedback</h2>
+      <p class="lead" style="margin-top:28px;font-size:42px">The skill that makes teams better — when it's given with care and received without armour.</p>
+      <span class="pillnum">03</span>
+    </div>
+  </section>
+
+  <!-- 12 · SBI FORMULA (interactive build) -->
+  <section data-label="Feedback formula">
+    <div class="s">
+      <span class="kick">Pillar 03 · Feedback</span>
+      <h2 class="head">A formula that takes the sting out</h2>
+      <p class="lead" style="margin-top:18px;font-size:30px">Click to build the <b>S·B·I</b> sentence, piece by piece.</p>
+      <div style="margin-top:50px;display:flex;flex-direction:column;gap:24px;max-width:1500px" id="sbi">
+        <div class="tile sbi-step" data-i="0" style="cursor:pointer;border-left:10px solid var(--coral);opacity:.5"><div style="display:flex;gap:24px;align-items:center"><span style="font-family:var(--font-display);font-weight:800;font-size:60px;color:var(--coral)">S</span><div><b style="font-size:34px">Situation</b><p class="sbi-ex" style="font-size:30px;color:var(--ink-soft);margin-top:6px;display:none">"In yesterday's group meeting…"</p><p class="sbi-lbl" style="font-size:28px;color:var(--ink-faint);margin-top:6px">When &amp; where it happened</p></div></div></div>
+        <div class="tile sbi-step" data-i="1" style="cursor:pointer;border-left:10px solid var(--blue);opacity:.5"><div style="display:flex;gap:24px;align-items:center"><span style="font-family:var(--font-display);font-weight:800;font-size:60px;color:var(--blue)">B</span><div><b style="font-size:34px">Behaviour</b><p class="sbi-ex" style="font-size:30px;color:var(--ink-soft);margin-top:6px;display:none">"…you took notes for everyone…"</p><p class="sbi-lbl" style="font-size:28px;color:var(--ink-faint);margin-top:6px">What they actually did (facts, not labels)</p></div></div></div>
+        <div class="tile sbi-step" data-i="2" style="cursor:pointer;border-left:10px solid var(--gold);opacity:.5"><div style="display:flex;gap:24px;align-items:center"><span style="font-family:var(--font-display);font-weight:800;font-size:60px;color:var(--gold)">I</span><div><b style="font-size:34px">Impact</b><p class="sbi-ex" style="font-size:30px;color:var(--ink-soft);margin-top:6px;display:none">"…which kept us all on the same page. Thank you!"</p><p class="sbi-lbl" style="font-size:28px;color:var(--ink-faint);margin-top:6px">The effect it had on you / the team</p></div></div></div>
+      </div>
+      <div class="brandbar"><span class="b-logo"><span class="d"></span>Communication</span><span>Feedback</span></div>
+    </div>
+  </section>
+
+  <!-- 13 · RECEIVING FEEDBACK -->
+  <section data-label="Receiving feedback">
+    <div class="s">
+      <span class="kick">Pillar 03 · Feedback</span>
+      <h2 class="head">Receiving it without the armour</h2>
+      <div class="row" style="margin-top:56px;align-items:stretch">
+        <div class="col" style="display:flex;flex-direction:column;gap:22px">
+          <div class="bub" style="font-size:30px"><b>1 · Breathe.</b> Your first reaction isn't your final one.</div>
+          <div class="bub" style="font-size:30px"><b>2 · Get curious.</b> "Can you give me an example?"</div>
+          <div class="bub" style="font-size:30px"><b>3 · Say thanks.</b> It took courage for them to tell you.</div>
+        </div>
+        <div class="col tile s--center" style="background:var(--navy);color:#fff;display:flex;justify-content:center">
+          <div style="font-size:38px;line-height:1.4;font-weight:600">Feedback is information about the <span style="color:var(--coral)">work</span>, not a verdict on <span style="color:var(--gold)">you</span>.</div>
+        </div>
+      </div>
+      <div class="brandbar"><span class="b-logo"><span class="d"></span>Communication</span><span>Feedback</span></div>
+    </div>
+  </section>
+
+  <!-- 14 · RECAP -->
+  <section data-label="Recap">
+    <div class="s s--center" style="background:var(--paper-2)">
+      <span class="kick">Three things to take with you</span>
+      <h2 class="head" style="font-size:96px">If you remember nothing else…</h2>
+      <div class="row" style="margin-top:60px;gap:34px">
+        <div class="col tile"><div style="font-size:30px;font-weight:800;color:var(--coral-deep)">Listen</div><p style="font-size:32px;margin-top:14px;line-height:1.4">Paraphrase before you reply.</p></div>
+        <div class="col tile"><div style="font-size:30px;font-weight:800;color:var(--blue)">Write</div><p style="font-size:32px;margin-top:14px;line-height:1.4">Lead with the ask, be specific.</p></div>
+        <div class="col tile"><div style="font-size:30px;font-weight:800;color:var(--ink)">Feedback</div><p style="font-size:32px;margin-top:14px;line-height:1.4">Situation · Behaviour · Impact.</p></div>
+      </div>
+      <div class="brandbar"><span class="b-logo"><span class="d"></span>Communication</span><span>Recap</span></div>
+    </div>
+  </section>
+
+  <!-- 15 · YOUR TURN -->
+  <section data-label="Your turn">
+    <div class="s s--coral s--center">
+      <span class="kick">Now it's on you</span>
+      <h2 class="head" style="font-size:118px">Let's put it to the test</h2>
+      <p class="lead" style="margin-top:28px;color:#fff;opacity:.92;font-size:42px;max-width:38ch">Two ways to prove you've got it: a quick-fire <b>quiz</b> and a hands-on <b>partner activity</b>.</p>
+      <div style="display:flex;gap:22px;margin-top:50px">
+        <a class="kit-btn" href="../quiz/Quiz.html" style="background:#fff;color:var(--coral-deep);font-size:28px">▶ Play the Quiz</a>
+        <a class="kit-btn" href="../activity/Activity.html" style="background:rgba(255,255,255,.18);color:#fff;font-size:28px">🎲 Start the Activity</a>
+      </div>
+      <div class="bub" style="position:absolute;right:120px;bottom:130px;transform:rotate(-4deg);font-size:34px;color:var(--ink)">Thanks for listening! 💛</div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+<script src="deck-interactions.js"></script>
+</body>
+</html>

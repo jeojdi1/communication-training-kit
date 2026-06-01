@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Communication — Quiz</title>
+<link rel="stylesheet" href="../kit.css" />
+<style>
+  html, body { height: 100%; }
+  body { background:
+      radial-gradient(1100px 700px at 80% -10%, var(--coral-soft), transparent 60%),
+      radial-gradient(900px 600px at 0% 110%, var(--blue-soft), transparent 55%),
+      var(--paper); display: flex; flex-direction: column; }
+
+  .app { flex: 1; max-width: 1100px; width: 100%; margin: 0 auto; padding: clamp(18px,3vw,34px) clamp(16px,3vw,32px); display: flex; flex-direction: column; }
+
+  /* top bar */
+  .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+  .brand { display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:800; color:var(--ink); font-size:1.05rem; }
+  .brand .d { width:14px;height:14px;border-radius:50%;background:var(--coral); }
+  .pill-stat { display:flex; gap:10px; }
+  .stat { background: var(--surface); border:1px solid var(--line); border-radius:999px; padding:8px 16px; font-weight:800; font-size:.95rem; color:var(--ink); box-shadow:var(--shadow-sm); }
+  .stat span { color: var(--coral-deep); }
+
+  .screen { flex:1; display:flex; flex-direction:column; }
+  .hidden { display:none !important; }
+
+  /* ---- start screen ---- */
+  .start { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:20px; }
+  .start .kit-chip { font-size:.8rem; }
+  .start h1 { font-size: clamp(40px,7vw,76px); font-weight:800; color:var(--ink); letter-spacing:-.03em; }
+  .start p { font-size: clamp(16px,2vw,21px); color:var(--ink-soft); max-width:46ch; line-height:1.5; margin:0; }
+  .tiles-preview { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; width:min(420px,80%); margin:8px 0; }
+  .tiles-preview div { height:54px; border-radius:12px; box-shadow:var(--shadow-sm); }
+  .tiles-preview div:nth-child(1){background:var(--coral)} .tiles-preview div:nth-child(2){background:var(--blue)}
+  .tiles-preview div:nth-child(3){background:var(--gold)} .tiles-preview div:nth-child(4){background:var(--navy)}
+
+  /* ---- question screen ---- */
+  .qhead { display:flex; align-items:center; gap:18px; margin-bottom:14px; }
+  .timer { width:64px;height:64px; flex-shrink:0; position:relative; }
+  .timer svg { transform: rotate(-90deg); }
+  .timer .num { position:absolute; inset:0; display:flex;align-items:center;justify-content:center; font-family:var(--font-display); font-weight:800; font-size:1.5rem; color:var(--ink); }
+  .qprog { flex:1; }
+  .qprog .meta { font-size:.85rem; color:var(--ink-faint); font-weight:700; letter-spacing:.06em; text-transform:uppercase; margin-bottom:6px; }
+  .qprog .track { height:8px; background:var(--paper-2); border-radius:999px; overflow:hidden; }
+  .qprog .track i { display:block; height:100%; background:var(--coral); border-radius:999px; transition:width .4s ease; }
+
+  .qcard { background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow-md); padding: clamp(24px,4vw,46px); text-align:center; margin-bottom:18px; }
+  .qcard .qpillar { display:inline-block; font-size:.78rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--coral-deep); background:var(--coral-soft); padding:6px 14px; border-radius:999px; margin-bottom:16px; }
+  .qcard h2 { font-size: clamp(24px,3.4vw,40px); color:var(--ink); line-height:1.15; }
+
+  .answers { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .ans { display:flex; align-items:center; gap:16px; border:none; cursor:pointer; border-radius:16px; padding: clamp(16px,2.4vw,24px); color:#fff; font-family:var(--font-text); font-weight:700; font-size:clamp(16px,2vw,22px); text-align:left; box-shadow:var(--shadow-sm); transition: transform .12s ease, box-shadow .2s ease, opacity .2s ease; }
+  .ans:hover:not(:disabled) { transform: translateY(-3px); box-shadow:var(--shadow-md); }
+  .ans:disabled { cursor:default; }
+  .ans .shape { width:30px;height:30px;flex-shrink:0; }
+  .ans.c0 { background:var(--coral); } .ans.c1 { background:var(--blue); }
+  .ans.c2 { background:var(--gold); color:var(--ink); } .ans.c3 { background:var(--navy); }
+  .ans.dim { opacity:.32; }
+  .ans.right { outline:5px solid oklch(0.62 0.15 150); outline-offset:3px; }
+  .ans.wrong { outline:5px solid oklch(0.55 0.2 25); outline-offset:3px; }
+  .ans .tick { margin-left:auto; font-size:1.5rem; font-weight:800; opacity:0; }
+  .ans.right .tick, .ans.wrong .tick { opacity:1; }
+
+  /* feedback toast */
+  .toast { text-align:center; margin-top:16px; font-family:var(--font-display); font-weight:800; font-size:clamp(20px,2.6vw,30px); min-height:1.4em; }
+  .toast.good { color: oklch(0.52 0.14 150); }
+  .toast.bad  { color: var(--coral-deep); }
+  .toast small { display:block; font-family:var(--font-text); font-weight:600; font-size:.6em; color:var(--ink-soft); margin-top:4px; }
+
+  .nextbtn { align-self:center; margin-top:16px; }
+
+  /* ---- results ---- */
+  .results { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:14px; }
+  .results .badge { font-size:64px; }
+  .results h1 { font-size:clamp(34px,5vw,60px); color:var(--ink); font-weight:800; }
+  .scorebig { font-family:var(--font-display); font-weight:800; font-size:clamp(60px,12vw,130px); color:var(--coral-deep); line-height:1; letter-spacing:-.03em; }
+  .scoreline { font-size:1.1rem; color:var(--ink-soft); }
+  .scoreline b { color:var(--ink); }
+  .record { background:var(--surface); border:1px dashed var(--line-strong); border-radius:var(--r-md); padding:14px 22px; font-size:.98rem; color:var(--ink-soft); max-width:42ch; line-height:1.5; }
+  .record b { color:var(--coral-deep); }
+  .rbtns { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:6px; }
+
+  .fade { animation: fade .35s ease; }
+  @keyframes fade { from{opacity:0; transform:translateY(8px)} to{opacity:1;transform:none} }
+</style>
+</head>
+<body>
+  <div class="app">
+    <div class="top">
+      <a class="brand" href="../index.html" style="text-decoration:none"><span class="d"></span>Communication Quiz</a>
+      <div class="pill-stat">
+        <div class="stat" id="qcount">Q <span>0</span>/7</div>
+        <div class="stat" id="score">Score <span>0</span></div>
+      </div>
+    </div>
+
+    <!-- START -->
+    <section class="screen start" id="startScreen">
+      <span class="kit-chip">Check your comprehension</span>
+      <h1>Ready to test it?</h1>
+      <p>7 quick questions on listening, writing, and feedback. Faster correct answers = more points. Pick the colored tile that matches your answer!</p>
+      <div class="tiles-preview"><div></div><div></div><div></div><div></div></div>
+      <button class="kit-btn kit-btn--primary" id="startBtn" style="font-size:1.1rem;padding:1em 2em">Start the quiz →</button>
+    </section>
+
+    <!-- QUESTION -->
+    <section class="screen hidden" id="quizScreen">
+      <div class="qhead">
+        <div class="timer">
+          <svg width="64" height="64"><circle cx="32" cy="32" r="28" fill="none" stroke="var(--line)" stroke-width="7"/><circle id="timerArc" cx="32" cy="32" r="28" fill="none" stroke="var(--coral)" stroke-width="7" stroke-linecap="round" stroke-dasharray="175.9" stroke-dashoffset="0"/></svg>
+          <div class="num" id="timerNum">20</div>
+        </div>
+        <div class="qprog">
+          <div class="meta" id="progMeta">Question 1 of 7</div>
+          <div class="track"><i id="progBar" style="width:14%"></i></div>
+        </div>
+      </div>
+
+      <div class="qcard fade" id="qcard">
+        <span class="qpillar" id="qpillar">Active Listening</span>
+        <h2 id="qtext">Question goes here</h2>
+      </div>
+
+      <div class="answers" id="answers"></div>
+      <div class="toast" id="toast"></div>
+      <button class="kit-btn kit-btn--primary nextbtn hidden" id="nextBtn">Next →</button>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="screen results hidden" id="resultScreen">
+      <div class="badge" id="rbadge">🎉</div>
+      <h1 id="rtitle">Great listening!</h1>
+      <div class="scorebig" id="rscore">0</div>
+      <div class="scoreline">You got <b id="rcorrect">0</b> of <b>7</b> right.</div>
+      <div class="record">📝 <b>Record your score:</b> write down <b id="rrecord">0</b> on your handout (or tell your group) so we can see who tops the class leaderboard!</div>
+      <div class="rbtns">
+        <button class="kit-btn kit-btn--primary" id="againBtn">Play again ↻</button>
+        <a class="kit-btn kit-btn--ghost" href="../activity/Activity.html">On to the activity →</a>
+      </div>
+    </section>
+  </div>
+
+  <script src="quiz-data.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>
