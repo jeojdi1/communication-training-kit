@@ -32,7 +32,11 @@
         <div style="color:#fff;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:22px">Presented by</div>
         <div>James Yang · Alex Au · Peter Yang</div>
       </div>
-      <div class="bub me" style="position:absolute;right:120px;top:120px;transform:rotate(4deg);font-size:40px">Can you hear me? 🙂</div>
+      <div class="bub me" style="position:absolute;left:120px;top:240px;transform:rotate(-3deg);font-size:40px">Can you hear me? 🙂</div>
+      <a class="slide-qr deck-qr slide-qr--tr" href="#" aria-label="Scan to open the training kit website">
+        <img alt="QR code to the training kit" />
+        <span class="slide-qr-label">Scan to <b>follow along</b></span>
+      </a>
     </div>
   </section>
 
@@ -269,13 +273,75 @@
         <a class="kit-btn" href="../quiz/Quiz.html" style="background:#fff;color:var(--coral-deep);font-size:28px">▶ Play the Quiz</a>
         <a class="kit-btn" href="../activity/Activity.html" style="background:rgba(255,255,255,.18);color:#fff;font-size:28px">🎲 Start the Activity</a>
       </div>
-      <div class="bub" style="position:absolute;right:120px;bottom:130px;transform:rotate(-4deg);font-size:34px;color:var(--ink)">Thanks for listening! 💛</div>
+      <div class="bub" style="position:absolute;left:120px;bottom:130px;transform:rotate(-4deg);font-size:34px;color:var(--ink)">Thanks for listening! 💛</div>
+      <a class="slide-qr deck-qr slide-qr--tr" href="#" aria-label="Scan to open the training kit website">
+        <img alt="QR code to the training kit" />
+        <span class="slide-qr-label">Scan to <b>revisit later</b></span>
+      </a>
     </div>
   </section>
 
 </deck-stage>
 
+<button class="fs-btn" id="fsBtn" type="button" aria-label="Toggle fullscreen" title="Fullscreen (F)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path id="fsIcon" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+  </svg>
+</button>
 <script src="deck-stage.js"></script>
 <script src="deck-interactions.js"></script>
+<script>
+  (function () {
+    // QR codes — point to the hub (index.html) so the audience lands on the
+    // training kit homepage rather than the deck itself.
+    var hubUrl = new URL('../index.html', window.location.href).href;
+    var qrSrc = 'https://api.qrserver.com/v1/create-qr-code/?size=480x480&margin=2&qzone=1&color=2A3350&bgcolor=ffffff&data=' + encodeURIComponent(hubUrl);
+    document.querySelectorAll('.deck-qr').forEach(function (link) {
+      link.href = hubUrl;
+      var img = link.querySelector('img');
+      if (img) img.src = qrSrc;
+    });
+
+    var btn = document.getElementById('fsBtn');
+    var icon = document.getElementById('fsIcon');
+    var ENTER_PATH = 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5';
+    var EXIT_PATH  = 'M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5';
+
+    var stage = document.querySelector('deck-stage');
+    function isFs() {
+      return !!(document.fullscreenElement || document.webkitFullscreenElement);
+    }
+    function toggle() {
+      if (!isFs()) {
+        var el = document.documentElement;
+        (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+      } else {
+        (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      }
+    }
+    function syncIcon() {
+      var fs = isFs();
+      if (icon) icon.setAttribute('d', fs ? EXIT_PATH : ENTER_PATH);
+      if (btn) btn.title = (fs ? 'Exit fullscreen' : 'Fullscreen') + ' (F)';
+      // Hide deck-stage's left thumbnail rail in fullscreen so the slide
+      // gets the entire viewport.
+      if (stage) {
+        if (fs) stage.setAttribute('no-rail', '');
+        else stage.removeAttribute('no-rail');
+      }
+    }
+    if (btn) btn.addEventListener('click', toggle);
+    document.addEventListener('fullscreenchange', syncIcon);
+    document.addEventListener('webkitfullscreenchange', syncIcon);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'f' || e.key === 'F') {
+        var t = e.target;
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+        e.preventDefault();
+        toggle();
+      }
+    });
+  })();
+</script>
 </body>
 </html>

@@ -67,3 +67,116 @@ h3.sub   { font-size: 46px; font-weight: 600; }
 
 .tap-pulse { animation: tapPulse 2s ease-in-out infinite; }
 @keyframes tapPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
+
+/* ──────────────────────────────────────────────────────────────
+   Animated slide transitions
+   ──────────────────────────────────────────────────────────────
+   deck-stage swaps `data-deck-active` between slides. By default
+   they snap with opacity 0↔1. We add a smooth crossfade and let
+   the inner content of the new slide do a staggered rise — kept
+   on inner elements only so print and thumbnail clones (where all
+   slides are forced visible) don't end up blurred or shifted. */
+deck-stage > section {
+  transition: opacity 480ms cubic-bezier(.4, 0, .2, 1),
+              visibility 0s linear 480ms !important;
+}
+deck-stage > section[data-deck-active] {
+  transition: opacity 520ms cubic-bezier(.4, 0, .2, 1),
+              visibility 0s linear 0s !important;
+}
+
+/* Staggered rise on the active slide's content only — scoped so
+   inactive slides, thumbnail clones, and printed pages render
+   their normal static layout with no leftover transforms. */
+@media screen {
+  deck-stage > section[data-deck-active] .kick,
+  deck-stage > section[data-deck-active] .chip-d {
+    animation: slideRise 560ms cubic-bezier(.2, .8, .2, 1) 80ms both;
+  }
+  deck-stage > section[data-deck-active] h1.title,
+  deck-stage > section[data-deck-active] h2.head {
+    animation: slideRise 640ms cubic-bezier(.2, .8, .2, 1) 140ms both;
+  }
+  deck-stage > section[data-deck-active] .lead,
+  deck-stage > section[data-deck-active] .row,
+  deck-stage > section[data-deck-active] .tile,
+  deck-stage > section[data-deck-active] > .s > .bub,
+  deck-stage > section[data-deck-active] .pillnum {
+    animation: slideRise 660ms cubic-bezier(.2, .8, .2, 1) 220ms both;
+  }
+}
+
+@keyframes slideRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  deck-stage > section,
+  deck-stage > section[data-deck-active] {
+    transition: opacity 200ms ease, visibility 0s !important;
+    animation: none !important;
+  }
+  deck-stage > section[data-deck-active] * {
+    animation: none !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Fullscreen toggle button
+   ────────────────────────────────────────────────────────────── */
+.fs-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 26, 50, 0.78);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform .15s ease, background .2s ease, opacity .25s ease;
+  opacity: 0.55;
+}
+.fs-btn:hover { opacity: 1; transform: scale(1.06); background: rgba(20, 26, 50, 0.92); }
+.fs-btn svg { width: 20px; height: 20px; }
+:fullscreen .fs-btn { opacity: 0.25; }
+:fullscreen .fs-btn:hover { opacity: 1; }
+@media print { .fs-btn { display: none !important; } }
+
+/* ──────────────────────────────────────────────────────────────
+   In-slide QR card (used on Title + Your-turn slides)
+   ────────────────────────────────────────────────────────────── */
+.slide-qr {
+  position: absolute;
+  left: 120px;
+  bottom: 110px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 20px 20px 14px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.slide-qr--tr { left: auto; bottom: auto; right: 120px; top: 120px; }
+.slide-qr img { display: block; width: 200px; height: 200px; border-radius: 12px; background: #fff; }
+.slide-qr .slide-qr-label {
+  font-family: var(--font-text);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.slide-qr .slide-qr-label b { color: var(--coral-deep); }
