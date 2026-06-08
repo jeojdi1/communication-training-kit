@@ -341,6 +341,26 @@
         toggle();
       }
     });
+
+    // Click anywhere on a slide → advance. Skip:
+    //   • clicks outside a slide (overlay, rail, page chrome — those use
+    //     retargeted shadow-DOM events that don't land inside a section)
+    //   • interactive slide widgets (links, buttons, reveal cards, SBI
+    //     steps, poll bars, the QR card)
+    //   • active text selection (user is highlighting copy)
+    //   • non-primary mouse buttons
+    var INTERACTIVE = 'a, button, input, select, textarea, label, summary, [role="button"], [onclick], .reveal-card, .sbi-step, .pollbar, .slide-qr, .fs-btn';
+    document.addEventListener('click', function (e) {
+      if (e.button !== 0) return;
+      if (e.defaultPrevented) return;
+      var sel = window.getSelection && window.getSelection();
+      if (sel && sel.toString().trim().length) return;
+      var t = e.target;
+      if (!t || !t.closest) return;
+      if (!t.closest('deck-stage > section')) return;
+      if (t.closest(INTERACTIVE)) return;
+      if (stage && typeof stage.next === 'function') stage.next();
+    });
   })();
 </script>
 </body>
